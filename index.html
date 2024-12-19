@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>El Tiempo</title>
+  </head>
+  <body>
+    <input
+      type="text"
+      name="ciudad"
+      id="ciudad"
+      placeholder="Introduce la ciudad..."
+    />
+    <div id="contenedor">
+      <div id="caja1">
+        <h2>Temperatura 🌡️</h2>
+        <h2 id="temperatura-valor"></h2>
+        <h2 id="temperatura-descripcion"></h2>
+        <h2 id="temp-actual"></h2>
+      </div>
+      <div id="caja2">
+        <h1 id="ubicacion">Pronóstico del tiempo 🌦️</h1>
+        <h3 id="provincia"></h3>
+        <h3 id="cielo"></h3>
+      </div>
+      <div id="caja3">
+        <h3>Veloc. del Viento 🪁</h3>
+        <h1 id="viento-velocidad"></h1>
+        <h3>Prob. de precipitaciones</h3>
+        <h1 id="prob-prec"></h1>
+      </div>
+    </div>
+    <script src="code.js"></script>
+  </body>
+</html>
