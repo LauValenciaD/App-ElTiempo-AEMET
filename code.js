@@ -5,6 +5,14 @@ const apikey =
 const inicio = () => {
   let ciudad = document.getElementById("ciudad");
   ciudad.addEventListener("blur", clima);
+
+  document.getElementById("buscar").addEventListener("click", clima);
+  // Evento para detectar cuando se presiona Enter
+  ciudad.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      clima();
+    }
+  });
 };
 
 async function clima() {
@@ -76,7 +84,6 @@ async function cargarMunicipios(municipio) {
 }
 
 function actualizarUI(datosClima, municipio) {
-  // Acceso a los datos de la prediccion
   const prediccion = datosClima[0].prediccion.dia[0];
   const temperaturaMin = prediccion.temperatura.minima;
   const temperaturaMax = prediccion.temperatura.maxima;
@@ -87,31 +94,15 @@ function actualizarUI(datosClima, municipio) {
     prediccion.temperatura.dato,
     prediccion.probPrecipitacion
   );
-  console.log(
-    "Probabilidad de precipitación:",
-    datosPorFranja.probabilidadPrecipitacion
-  );
-  let caja1 = document.getElementById("caja1");
-  caja1.setAttribute("style", "display: inline-block");
-  let caja3 = document.getElementById("caja3");
-  caja3.setAttribute("style", "display: inline-block");
 
-  console.log("Viento:", datosPorFranja.viento);
-  console.log("Estado del cielo:", datosPorFranja.estadoCielo.descripcion);
-  console.log("Temperatura:", datosPorFranja.temperatura);
-  /*   {
-    probabilidadPrecipitacion: probabilidadPrecipitacion.value,
-    periodoPrecipitacion: probabilidadPrecipitacion.periodo,
-    viento: vientoActual,
-    estadoCielo: estadoCieloActual,
-    temperatura: temperaturaActual.value,
-    horaTemperatura: temperaturaActual.hora,
-  }; */
+  // Asegúrate de que los elementos se muestren correctamente
+  document.getElementById("caja1").style.display = "inline-block";
+  document.getElementById("caja3").style.display = "inline-block";
+  document.getElementById("provincia").style.display = "block";
+  document.getElementById("cielo").style.display = "block";
+  document.getElementById("pronostico").style.display = "flex";
 
-  // Obtener el estado del cielo adecuado
-  const estadoCielo = datosPorFranja.estadoCielo;
-  console.log("Estado del cielo seleccionado:", estadoCielo);
-
+  // Actualiza los textos
   document.getElementById(
     "temperatura-valor"
   ).innerText = `Min: ${temperaturaMin}°C | Max: ${temperaturaMax}°C`;
@@ -123,68 +114,30 @@ function actualizarUI(datosClima, municipio) {
     "temp-actual"
   ).textContent = `Temperatura actual: ${datosPorFranja.temperatura}°C`;
 
-  let viento = document.getElementById("viento-velocidad");
-  viento.textContent = datosPorFranja.viento.velocidad + "km/h";
+  document.getElementById(
+    "viento-velocidad"
+  ).textContent = `${datosPorFranja.viento.velocidad} km/h`;
+  document.getElementById(
+    "prob-prec"
+  ).textContent = `${datosPorFranja.probabilidadPrecipitacion}%`;
+  document.getElementById(
+    "franja-prec"
+  ).textContent = `Franja: ${datosPorFranja.periodoPrecipitacion}h`;
 
-  let cielo = document.getElementById("cielo");
+  // Icono animado
   let iconoAnimado = document.getElementById("icono-animado");
   if (!iconoAnimado) {
-    //asegurarse de que el icono no este ya creado
     iconoAnimado = document.createElement("img");
     iconoAnimado.id = "icono-animado";
-    document.getElementById("caja2").insertBefore(iconoAnimado, cielo);
+    document
+      .getElementById("caja2")
+      .insertBefore(iconoAnimado, document.getElementById("cielo"));
   }
-  //preparar iconos
-  switch (estadoCielo.descripcion) {
-    case "Tormenta":
-      iconoAnimado.src = "iconos/animated/thunder.svg";
-      cielo.textContent = "Tormenta";
-      console.log("TORMENTA");
-      break;
-    case "Lluvioso":
-      iconoAnimado.src = "iconos/animated/rainy-2.svg";
-      console.log("Lluvioso");
-      break;
-    case "Lluvia":
-      iconoAnimado.src = "iconos/animated/rainy-7.svg";
-      console.log("LLUVIA");
-      break;
-    case "Nieve":
-      iconoAnimado.src = "iconos/animated/snowy-6.svg";
-      console.log("NIEVE");
-      break;
-    case "Despejado":
-      iconoAnimado.src = "iconos/animated/day.svg";
-      cielo.textContent = "Despejado";
-      console.log("Despejado");
-      break;
-    case "Poco nuboso":
-      iconoAnimado.src = "iconos/animated/cloudy-day-1.svg";
-      cielo.textContent = "Poco nuboso";
-      console.log("Poco nuboso");
-      break;
-    case "Nubes altas":
-      iconoAnimado.src = "iconos/animated/cloudy-day-2.svg";
-      cielo.textContent = "Nubes altas";
-      console.log("Nubes altas");
-      break;
-
-    case "Nuboso":
-      iconoAnimado.src = "iconos/animated/cloudy-day-3.svg";
-      cielo.textContent = "Nuboso";
-      console.log("Nuboso");
-      break;
-
-    case "Muy nuboso":
-      iconoAnimado.src = "iconos/animated/cloudy.svg";
-      cielo.textContent = "Muy nuboso";
-      console.log("Muy nuboso");
-      break;
-    default:
-      iconoAnimado.src = "iconos/animated/day.svg";
-      cielo.textContent = "Despejado";
-      console.log("por defecto");
-  }
+  const iconoSrc =
+    icons[datosPorFranja.estadoCielo.descripcion] || icons["Sin datos"];
+  iconoAnimado.src = iconoSrc;
+  document.getElementById("cielo").textContent =
+    datosPorFranja.estadoCielo.descripcion || "Sin datos";
 }
 
 function obtenerTiempoActual(viento, cielo, temperatura, probPrecipitacion) {

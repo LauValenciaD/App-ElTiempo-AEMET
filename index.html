@@ -4,34 +4,97 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <!-- iconos de google -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search"
+    />
     <title>El Tiempo</title>
   </head>
   <body>
-    <input
-      type="text"
-      name="ciudad"
-      id="ciudad"
-      placeholder="Introduce la ciudad..."
-    />
-    <div id="contenedor">
-      <div id="caja1">
-        <h2>Temperatura 🌡️</h2>
-        <h2 id="temperatura-valor"></h2>
-        <h2 id="temperatura-descripcion"></h2>
-        <h2 id="temp-actual"></h2>
+    <main>
+      <div class="input-container">
+        <input
+          class="ciudad"
+          type="text"
+          name="ciudad"
+          id="ciudad"
+          placeholder="Introduce la ciudad..."
+        />
+        <button id="buscar">
+          <span class="material-symbols-outlined">search</span>
+        </button>
       </div>
-      <div id="caja2">
-        <h1 id="ubicacion">Pronóstico del tiempo 🌦️</h1>
-        <h3 id="provincia"></h3>
-        <h3 id="cielo"></h3>
+
+      <div id="contenedor">
+        <div id="caja1">
+          <h2>Temperatura 🌡️</h2>
+          <h2 id="temperatura-valor">15ºC</h2>
+          <h2 id="temperatura-descripcion">Sensación térmica: 15ºC</h2>
+          <h2 id="temp-actual">Temperatura actual: 14ºC</h2>
+        </div>
+        <div id="caja2">
+          <h1 id="ubicacion">Pronóstico del tiempo 🌦️</h1>
+          <h3 id="provincia">Sevilla</h3>
+          <h3 id="cielo">Despejado</h3>
+        </div>
+        <div id="caja3">
+          <h3>Veloc. del Viento 🪁</h3>
+          <h1 id="viento-velocidad">5km/h</h1>
+          <h3>Prob. de precipitaciones</h3>
+          <h1 id="prob-prec">0%</h1>
+          <h3 id="franja-prec">Franja: 6-12h</h3>
+        </div>
       </div>
-      <div id="caja3">
-        <h3>Veloc. del Viento 🪁</h3>
-        <h1 id="viento-velocidad"></h1>
-        <h3>Prob. de precipitaciones</h3>
-        <h1 id="prob-prec"></h1>
+      <div id="pronostico">
+        <div class="dia">
+          <h5 class="fecha">1 enero</h5>
+          <img
+            class="icono-pro"
+            src="iconos/animated/day.svg"
+            alt="Despejado"
+          />
+          <h5 class="temp">10ºC</h5>
+        </div>
+        <div class="dia">
+          <h5 class="fecha">1 enero</h5>
+          <img
+            class="icono-pro"
+            src="iconos/animated/day.svg"
+            alt="Despejado"
+          />
+          <h5 class="temp">10ºC</h5>
+        </div>
+        <div class="dia">
+          <h5 class="fecha">1 enero</h5>
+          <img
+            class="icono-pro"
+            src="iconos/animated/day.svg"
+            alt="Despejado"
+          />
+          <h5 class="temp">10ºC</h5>
+        </div>
+        <div class="dia">
+          <h5 class="fecha">1 enero</h5>
+          <img
+            class="icono-pro"
+            src="iconos/animated/day.svg"
+            alt="Despejado"
+          />
+          <h5 class="temp">10ºC</h5>
+        </div>
+        <div class="dia">
+          <h5 class="fecha">1 enero</h5>
+          <img
+            class="icono-pro"
+            src="iconos/animated/day.svg"
+            alt="Despejado"
+          />
+          <h5 class="temp">10ºC</h5>
+        </div>
       </div>
-    </div>
+    </main>
+    <script src="icons.js"></script>
     <script src="code.js"></script>
   </body>
 </html>

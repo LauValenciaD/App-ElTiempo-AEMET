@@ -1,39 +1,29 @@
 const icons = {
-  Despejado: "https://image.flaticon.com/icons/png/512/606/606795.png",
-  "Poco nuboso": "https://image.flaticon.com/icons/png/512/606/606800.png",
-  "Intervalos nubosos":
-    "https://image.flaticon.com/icons/png/512/606/606800.png",
-  Nuboso: "https://image.flaticon.com/icons/png/512/606/606796.png",
-  "Muy nuboso": "https://image.flaticon.com/icons/png/512/606/606796.png",
-  Cubierto: "https://image.flaticon.com/icons/png/512/606/606796.png",
-  "Nubes altas": "https://image.flaticon.com/icons/png/512/606/606800.png",
-  "Intervalos nubosos con lluvia":
-    "https://image.flaticon.com/icons/png/512/1663/1663098.png",
-  "Intervalos nubosos con lluvia escasa":
-    "https://image.flaticon.com/icons/png/512/1663/1663098.png",
-  "Nuboso con lluvia":
-    "https://image.flaticon.com/icons/png/512/606/606801.png",
-  "Muy nuboso con lluvia":
-    "https://image.flaticon.com/icons/png/512/606/606801.png",
-  "Nuboso con lluvia escasa":
-    "https://image.flaticon.com/icons/png/512/606/606801.png",
-  "Muy nuboso con lluvia escasa":
-    "https://image.flaticon.com/icons/png/512/606/606801.png",
-  "Cubierto con lluvia":
-    "https://image.flaticon.com/icons/png/512/606/606801.png",
-  "Intervalos nubosos con nieve":
-    "https://image.flaticon.com/icons/png/512/2910/2910065.png",
-  "Nuboso con nieve":
-    "https://image.flaticon.com/icons/png/512/2910/2910065.png",
-  "Muy nuboso con nieve":
-    "https://image.flaticon.com/icons/png/512/2910/2910065.png",
-  Chubascos: "https://image.flaticon.com/icons/png/512/2948/2948175.png",
-  Tormenta: "https://image.flaticon.com/icons/png/512/606/606799.png",
-  Bruma: "https://image.flaticon.com/icons/png/512/727/727789.png",
-  Granizo: "https://image.flaticon.com/icons/png/512/3937/3937133.png",
-  Niebla: "https://image.flaticon.com/icons/png/512/2930/2930021.png",
-  Calima: "https://image.flaticon.com/icons/png/512/182/182264.png",
-  "Sin datos": "",
+  Tormenta: "iconos/animated/thunder.svg",
+  Lluvioso: "iconos/animated/rainy-2.svg",
+  Lluvia: "iconos/animated/rainy-7.svg",
+  Nieve: "iconos/animated/snowy-6.svg",
+  Despejado: "iconos/animated/day.svg",
+  "Poco nuboso": "iconos/animated/cloudy-day-1.svg",
+  "Nubes altas": "iconos/animated/cloudy-day-2.svg",
+  Nuboso: "iconos/animated/cloudy-day-3.svg",
+  "Muy nuboso": "iconos/animated/cloudy.svg",
+  Cubierto: "iconos/animated/cloudy.svg",
+  Bruma: "iconos/animated/fog.svg",
+  Niebla: "iconos/animated/mist.svg",
+  Calima: "iconos/animated/haze.svg",
+  Granizo: "iconos/animated/hail.svg",
+  Chubascos: "iconos/animated/showers.svg",
+  "Intervalos nubosos con lluvia": "iconos/animated/rainy-3.svg",
+  "Intervalos nubosos con nieve": "iconos/animated/snowy-2.svg",
+  "Intervalos nubosos": "iconos/animated/cloudy-day-2.svg",
+  "Intervalos nubosos con lluvia escasa": "iconos/animated/rainy-1.svg",
+  "Nuboso con lluvia": "iconos/animated/rainy-2.svg",
+  "Muy nuboso con lluvia": "iconos/animated/rainy-1.svg",
+  "Nuboso con lluvia escasa": "iconos/animated/rainy-4.svg",
+  "Muy nuboso con lluvia escasa": "iconos/animated/rainy-4.svg",
+  "Cubierto con lluvia": "iconos/animated/rainy-4.svg",
+  "Nuboso con nieve": "iconos/animated/snowy-5.svg",
+  "Muy nuboso con nieve": "iconos/animated/snowy-6.svg",
+  "Sin datos": "iconos/animated/day.svg", // Icono por defecto
 };
-
-export default icons;
