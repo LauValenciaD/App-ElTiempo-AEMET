@@ -52,6 +52,8 @@ async function clima() {
     actualizarUI(datosClima, codigoMunicipio.nombre);
   } catch (error) {
     console.error("Error al realizar la solicitud:", error);
+    document.getElementById("ubicacion").textContent =
+      "Error al realizar la solicitud o municipio no encontrado";
   }
 }
 
@@ -95,14 +97,14 @@ function actualizarUI(datosClima, municipio) {
     prediccion.probPrecipitacion
   );
 
-  // Asegúrate de que los elementos se muestren correctamente
+  // mostrar elementos ocultos
   document.getElementById("caja1").style.display = "inline-block";
   document.getElementById("caja3").style.display = "inline-block";
   document.getElementById("provincia").style.display = "block";
   document.getElementById("cielo").style.display = "block";
   document.getElementById("pronostico").style.display = "flex";
 
-  // Actualiza los textos
+  // actualizar los textos
   document.getElementById(
     "temperatura-valor"
   ).innerText = `Min: ${temperaturaMin}°C | Max: ${temperaturaMax}°C`;
@@ -124,7 +126,7 @@ function actualizarUI(datosClima, municipio) {
     "franja-prec"
   ).textContent = `Franja: ${datosPorFranja.periodoPrecipitacion}h`;
 
-  // Icono animado
+  // iconos animados
   let iconoAnimado = document.getElementById("icono-animado");
   if (!iconoAnimado) {
     iconoAnimado = document.createElement("img");
