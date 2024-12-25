@@ -45,7 +45,10 @@ async function clima() {
       throw new Error(`HTTP error! status: ${datosResponse.status}`);
     }
 
-    const datosClima = await datosResponse.json();
+    const datosBuffer = await datosResponse.arrayBuffer();
+    const datosDecoder = new TextDecoder("ISO-8859-15");
+    const datosText = datosDecoder.decode(datosBuffer);
+    const datosClima = JSON.parse(datosText);
     console.log("Datos del clima:", datosClima);
 
     // Actualiza la interfaz con la información
@@ -125,7 +128,7 @@ function actualizarUI(datosClima, municipio) {
   document.getElementById(
     "franja-prec"
   ).textContent = `Franja: ${datosPorFranja.periodoPrecipitacion}h`;
-
+  document.getElementById("provincia").textContent = datosClima[0].provincia;
   // iconos animados
   let iconoAnimado = document.getElementById("icono-animado");
   if (!iconoAnimado) {
