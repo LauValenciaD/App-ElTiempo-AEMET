@@ -49,7 +49,7 @@ async function clima() {
     const datosDecoder = new TextDecoder("ISO-8859-15");
     const datosText = datosDecoder.decode(datosBuffer);
     const datosClima = JSON.parse(datosText);
-    console.log("Datos del clima:", datosClima);
+    /* console.log("Datos del clima:", datosClima); */
 
     // Actualiza la interfaz con la información
     actualizarUI(datosClima);
@@ -57,6 +57,13 @@ async function clima() {
     console.error("Error al realizar la solicitud:", error);
     document.getElementById("ubicacion").textContent =
       "Error al realizar la solicitud o municipio no encontrado";
+
+    document.getElementById("caja1").style.display = "none";
+    document.getElementById("caja3").style.display = "none";
+    document.getElementById("provincia").style.display = "none";
+    document.getElementById("cielo").style.display = "none";
+    document.getElementById("pronostico").style.display = "none";
+    document.getElementById("icono-animado").style.display = "none";
   }
 }
 
@@ -141,6 +148,7 @@ function actualizarUI(datosClima, municipio) {
   const iconoSrc =
     icons[datosPorFranja.estadoCielo.descripcion] || icons["Sin datos"];
   iconoAnimado.src = iconoSrc;
+  document.getElementById("icono-animado").style.display = "block";
   document.getElementById("cielo").textContent =
     datosPorFranja.estadoCielo.descripcion || "Sin datos";
 

@@ -18,6 +18,14 @@ body {
   background: url("bg/beach.jpg");
   background-size: cover;
   background-position: center;
+  gap: 20px;
+}
+p {
+  color: white;
+  font-size: x-small;
+}
+footer {
+  z-index: 1;
 }
 body::before {
   content: "";
