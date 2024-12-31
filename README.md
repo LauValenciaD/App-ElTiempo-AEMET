@@ -22,7 +22,7 @@ Esta es una aplicación web que muestra el pronóstico del tiempo actual y a 5 d
 - Cambiar el fondo de pantalla según el tiempo actual.
 
 ## ✨ Autora
-Este proyecto fue desarrollado por Laura Valencia, desarrolladora web junior con experiencia en frontend.
+Este proyecto fue desarrollado por Laura Valencia, estudiante de Desarrollo de Aplicaciones Web.
 Si tienes preguntas, sugerencias o simplemente quieres saludar, ¡no dudes en contactarme! 😊
 
 [Mi perfil de LinkedIn](https://www.linkedin.com/in/laura-valencia-diaz/)
