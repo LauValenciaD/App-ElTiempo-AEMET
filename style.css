@@ -44,7 +44,7 @@ main {
 #caja1,
 #caja2,
 #caja3 {
-  display: inline-block;
+  display: flex;
   text-align: center;
   vertical-align: middle;
   padding: 4% 2% 2% 4%;

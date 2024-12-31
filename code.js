@@ -23,7 +23,7 @@ async function clima() {
   try {
     // Primera petición para obtener la URL de los datos
     const response = await fetch(
-      `${serverUrl}/api/prediccion/especifica/municipio/diaria/${codigoMunicipio.codigo}${apikey}`,
+      `${serverUrl}/api/prediccion/especifica/municipio/diaria/${codigoMunicipio}${apikey}`,
       {
         method: "GET",
         mode: "cors",
@@ -52,7 +52,7 @@ async function clima() {
     console.log("Datos del clima:", datosClima);
 
     // Actualiza la interfaz con la información
-    actualizarUI(datosClima, codigoMunicipio.nombre);
+    actualizarUI(datosClima);
   } catch (error) {
     console.error("Error al realizar la solicitud:", error);
     document.getElementById("ubicacion").textContent =
@@ -78,7 +78,7 @@ async function cargarMunicipios(municipio) {
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
       if (keyNormalizada === municipioNormalizado) {
-        return { codigo: municipios[key], nombre: key }; //devuelve el codigo y el nombre correcto
+        return municipios[key]; //devuelve el codigo y el nombre correcto
       }
     }
 
@@ -92,12 +92,12 @@ function actualizarUI(datosClima, municipio) {
   const prediccion = datosClima[0].prediccion.dia[0];
   const temperaturaMin = prediccion.temperatura.minima;
   const temperaturaMax = prediccion.temperatura.maxima;
-  const sensacion = prediccion.sensTermica.maxima;
   const datosPorFranja = obtenerTiempoActual(
     prediccion.viento,
     prediccion.estadoCielo,
     prediccion.temperatura.dato,
-    prediccion.probPrecipitacion
+    prediccion.probPrecipitacion,
+    prediccion.sensTermica.dato
   );
 
   // mostrar elementos ocultos
@@ -111,13 +111,13 @@ function actualizarUI(datosClima, municipio) {
   document.getElementById(
     "temperatura-valor"
   ).innerText = `Min: ${temperaturaMin}°C | Max: ${temperaturaMax}°C`;
-  document.getElementById("ubicacion").textContent = municipio;
+  document.getElementById("ubicacion").textContent = datosClima[0].nombre;
   document.getElementById(
     "temperatura-descripcion"
-  ).textContent = `Sensación térmica: ${sensacion}°C`;
+  ).textContent = `Sensación térmica: ${datosPorFranja.sensacion}°C`;
   document.getElementById(
     "temp-actual"
-  ).textContent = `Temperatura actual: ${datosPorFranja.temperatura}°C`;
+  ).textContent = `${datosPorFranja.temperatura}°C`;
 
   document.getElementById(
     "viento-velocidad"
@@ -143,9 +143,36 @@ function actualizarUI(datosClima, municipio) {
   iconoAnimado.src = iconoSrc;
   document.getElementById("cielo").textContent =
     datosPorFranja.estadoCielo.descripcion || "Sin datos";
+
+  let predicciones = document.getElementsByClassName("dia");
+  let contador = 1;
+
+  for (const dia of predicciones) {
+    const prediccion = datosClima[0].prediccion.dia[contador];
+    let fechaPro = new Date(prediccion.fecha);
+    const formateador = new Intl.DateTimeFormat("es-ES", {
+      day: "numeric",
+      month: "long",
+    }); // Para poner formato 1 enero, etc.
+
+    const iconoSrc =
+      icons[prediccion.estadoCielo[0].descripcion] || icons["Sin datos"];
+    dia.children[1].src = iconoSrc;
+    dia.children[2].textContent = `Min: ${prediccion.temperatura.maxima}°C | Max: ${prediccion.temperatura.minima}°C`;
+
+    dia.firstElementChild.innerText = formateador.format(fechaPro);
+    contador++;
+  }
 }
 
-function obtenerTiempoActual(viento, cielo, temperatura, probPrecipitacion) {
+// Para obtener los datos sengún la franja horaria
+function obtenerTiempoActual(
+  viento,
+  cielo,
+  temperatura,
+  probPrecipitacion,
+  sensacion
+) {
   const horaActual = new Date().getHours();
 
   // Función para obtener el valor correspondiente a una franja horaria
@@ -187,6 +214,17 @@ function obtenerTiempoActual(viento, cielo, temperatura, probPrecipitacion) {
       temperaturaActual = temperatura[i];
     }
   }
+  // Obtener la temperatura más cercana a la hora actual
+  let sensActual = { value: 0, hora: 0 };
+  for (let i = 0; i < sensacion.length; i++) {
+    if (
+      i === 0 ||
+      Math.abs(sensacion[i].hora - horaActual) <
+        Math.abs(sensActual.hora - horaActual)
+    ) {
+      sensActual = sensacion[i];
+    }
+  }
 
   // Devolver un objeto con toda la información
   return {
@@ -195,6 +233,7 @@ function obtenerTiempoActual(viento, cielo, temperatura, probPrecipitacion) {
     viento: vientoActual,
     estadoCielo: estadoCieloActual,
     temperatura: temperaturaActual.value,
+    sensacion: sensActual.value,
     horaTemperatura: temperaturaActual.hora,
   };
 }

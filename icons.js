@@ -18,6 +18,9 @@ const icons = {
   "Intervalos nubosos con nieve": "iconos/animated/snowy-2.svg",
   "Intervalos nubosos": "iconos/animated/cloudy-day-2.svg",
   "Intervalos nubosos con lluvia escasa": "iconos/animated/rainy-1.svg",
+  "Intervalos nubosos con tormenta y lluvia escasa":
+    "iconos/animated/rainy-1.svg",
+  "Nuboso con tormenta y lluvia escasa": "iconos/animated/rainy-2.svg",
   "Nuboso con lluvia": "iconos/animated/rainy-2.svg",
   "Muy nuboso con lluvia": "iconos/animated/rainy-1.svg",
   "Nuboso con lluvia escasa": "iconos/animated/rainy-4.svg",
