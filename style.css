@@ -132,3 +132,36 @@ main {
   width: 70px;
   height: 70px;
 }
+/* Responsive */
+@media (max-width: 768px) {
+  #contenedor {
+    overflow: scroll;
+    gap: 10px;
+  }
+
+  #caja1,
+  #caja2,
+  #caja3 {
+    width: 90%;
+    height: auto;
+    padding: 5%;
+  }
+
+  #pronostico {
+    width: 100%;
+    overflow: scroll;
+  }
+
+  .dia {
+    min-width: 80px;
+    padding: 5%;
+  }
+
+  .input-container {
+    width: 90%;
+  }
+
+  .ciudad {
+    padding: 10px 16px;
+  }
+}
